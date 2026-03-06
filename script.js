@@ -116,6 +116,7 @@ async function generateVeoVideo(instanceNum) {
             const taskId = result.data.taskId;
             activeTasks[instanceNum] = taskId;
             
+            console.log("Task created:", taskId);
             progressText.textContent = "Task created. Processing...";
             progressBar.style.width = "30%";
             
@@ -160,6 +161,8 @@ async function pollForVideoCompletion(taskId, instanceNum) {
             // Poll backend for task status (instance-specific)
             const res = await fetch(`${backendUrl}/api/veo/status/${taskId}`);
             const data = await res.json();
+            
+            console.log("Poll response:", data);
             
             if (data.status === "completed") {
                 clearInterval(interval);
@@ -242,5 +245,3 @@ function toggleEdit(instanceNum) {
         editBtn.innerHTML = '<span class="btn-icon">✏️</span> Edit';
     }
 }
-
-
