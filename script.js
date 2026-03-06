@@ -5,6 +5,10 @@ const backendUrl = "https://veo-backend-1.onrender.com";
 // Store active tasks per instance
 const activeTasks = {};
 
+// History pagination
+let historyPage = 0;
+const historyPerPage = 9;
+
 // ================= IMAGE INPUT HANDLING =================
 function handleVeoImageInput(input, previewId, loaderId, progressId) {
     const url = input.value.trim();
@@ -61,6 +65,41 @@ function checkInstanceValidation(inputId) {
         } else {
             generateBtn.disabled = true;
         }
+    }
+}
+
+// ================= UPDATE SCRIPT FROM CHECKBOXES =================
+function updateScriptFromCheckbox(instanceNum) {
+    const scriptTextarea = document.getElementById(`script${instanceNum}`);
+    const toneOption1 = document.getElementById(`toneOption1_${instanceNum}`);
+    const toneOption2 = document.getElementById(`toneOption2_${instanceNum}`);
+    
+    // Get current script
+    let currentScript = scriptTextarea.value;
+    
+    // Remove existing tone options if they exist (to avoid duplicates)
+    currentScript = currentScript.replace(/\n\nTONE:.*$/g, "");
+    currentScript = currentScript.replace(/\n\nTone Indian Hinglish.*$/g, "");
+    
+    // Add selected tone option(s)
+    const selectedOptions = [];
+    
+    if (toneOption1.checked) {
+        selectedOptions.push(
+            "TONE: Indian Hinglish with Character Age 27, with suitable expression according to the script as it will be used as a hook, No on-screen text and make the character say the script as it is."
+        );
+    }
+    
+    if (toneOption2.checked) {
+        selectedOptions.push(
+            "Tone Indian Hinglish - Indian tone age 27. this is a hook for an ad so make it that way. no onscreen text. make the person say the script exactly."
+        );
+    }
+    
+    // Append selected options to script
+    if (selectedOptions.length > 0) {
+        const appendedText = "\n\n" + selectedOptions.join("\n\n");
+        scriptTextarea.value = currentScript + appendedText;
     }
 }
 
@@ -216,6 +255,56 @@ async function saveToHistory(videoUrl) {
     }
 }
 
+// ================= HISTORY FUNCTIONS =================
+async function loadHistory() {
+    const historyGrid = document.getElementById('historyGrid');
+    const noHistory = document.getElementById('noHistory');
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    
+    try {
+        const res = await fetch(`${backendUrl}/api/history`);
+        const data = await res.json();
+        
+        if (data.history && data.history.length > 0) {
+            noHistory.style.display = 'none';
+            
+            // Show first 9 (or current page)
+            const videosToShow = data.history.slice(0, (historyPage + 1) * historyPerPage);
+            
+            historyGrid.innerHTML = '';
+            videosToShow.forEach((video, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <video src="${video.url}" controls></video>
+                    <div class="history-item-info">
+                        <span>${video.timestamp}</span>
+                    </div>
+                `;
+                historyGrid.appendChild(historyItem);
+            });
+            
+            // Show "Show More" if there are more videos
+            if (data.history.length > (historyPage + 1) * historyPerPage) {
+                showMoreBtn.style.display = 'block';
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        } else {
+            noHistory.style.display = 'block';
+            showMoreBtn.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Error loading history:", error);
+        noHistory.style.display = 'block';
+    }
+}
+
+function loadMoreHistory() {
+    historyPage++;
+    loadHistory();
+}
+
 // ================= ADDITIONAL FUNCTIONS =================
 
 // Copy script to clipboard
@@ -244,4 +333,23 @@ function toggleEdit(instanceNum) {
         scriptTextarea.readOnly = true;
         editBtn.innerHTML = '<span class="btn-icon">✏️</span> Edit';
     }
+}
+
+// Toggle sidebar
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    if (sidebar.classList.contains('active')) {
+        loadHistory();
+    }
+}
+
+// Change model
+function changeModel() {
+    const modelSelect = document.getElementById('modelSelect');
+    const currentModel = modelSelect.value;
+    console.log("Model changed to:", currentModel);
 }
