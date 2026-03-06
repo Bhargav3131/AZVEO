@@ -557,3 +557,11 @@ header h1 {
     padding: var(--spacing-md);
 
 
+
+/* Optional Label Styling */
+.optional-label {
+    font-size: 11px;
+    color: #888;
+    font-weight: normal;
+    margin-left: 5px;
+}
