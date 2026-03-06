@@ -189,7 +189,7 @@ async function pollForVideoCompletion(taskId, instanceNum) {
     const generateBtn = document.getElementById(`generateBtn${instanceNum}`);
     
     let pollCount = 0;
-    const maxPolls = 120;  // 10 minutes at 5s intervals
+    const maxPolls = 60;  // 10 minutes at 5s intervals
     
     const interval = setInterval(async () => {
         pollCount++;
