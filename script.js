@@ -9,7 +9,7 @@ const activeTasks = {};
 let historyPage = 0;
 const historyPerPage = 9;
 
-// ================= IMAGE INPUT HANDLING =================
+// ================= IMAGE INPUT HANDLING (INSTANCE-SPECIFIC) =================
 function handleVeoImageInput(input, previewId, loaderId, progressId) {
     const url = input.value.trim();
     if (!url) return;
@@ -49,10 +49,12 @@ function handleVeoImageInput(input, previewId, loaderId, progressId) {
     }, 150);
 }
 
-// ================= VALIDATION FOR EACH INSTANCE =================
+// ================= VALIDATION FOR EACH INSTANCE (FIXED) =================
 function checkInstanceValidation(inputId) {
+    // Extract instance number from input ID
     const instanceNum = inputId.replace(/\D/g, '');
     
+    // Get values for THIS specific instance only
     const script = document.getElementById(`script${instanceNum}`).value.trim();
     const startImage = document.getElementById(`image${instanceNum}_start`).value.trim();
     const endImage = document.getElementById(`image${instanceNum}_end`).value.trim();
@@ -70,7 +72,7 @@ function checkInstanceValidation(inputId) {
     }
 }
 
-// ================= UPDATE SCRIPT FROM CHECKBOXES =================
+// ================= UPDATE SCRIPT FROM CHECKBOXES (FIXED) =================
 function updateScriptFromCheckbox(instanceNum) {
     const scriptTextarea = document.getElementById(`script${instanceNum}`);
     const toneOption1 = document.getElementById(`toneOption1_${instanceNum}`);
@@ -129,10 +131,15 @@ async function generateVeoVideo(instanceNum) {
     progressText.textContent = "Creating task...";
     progressBar.style.width = "10%";
     
-    // Prepare request data
+    // Prepare request data - ✅ Only include endImage if provided
+    const imageUrls = [startImage];
+    if (endImage) {
+        imageUrls.push(endImage);
+    }
+    
     const requestData = {
         prompt: script,
-        imageUrls: [startImage, endImage],
+        imageUrls: imageUrls,
         model: model,
         generationType: "FIRST_AND_LAST_FRAMES_2_VIDEO",
         aspect_ratio: aspectRatio,
@@ -355,4 +362,3 @@ function changeModel() {
     const currentModel = modelSelect.value;
     console.log("Model changed to:", currentModel);
 }
-
