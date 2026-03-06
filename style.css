@@ -520,7 +520,7 @@ header h1 {
 .checkbox-label {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 7px;
     margin-bottom: 12px;
     cursor: pointer;
     padding: 10px;
@@ -541,7 +541,7 @@ header h1 {
 }
 
 .checkbox-text {
-    font-size: 13px;
+    font-size: 9px;
     line-height: 1.5;
     color: #555;
 }
@@ -565,3 +565,4 @@ header h1 {
     font-weight: normal;
     margin-left: 5px;
 }
+
