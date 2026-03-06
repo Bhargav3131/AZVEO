@@ -469,8 +469,89 @@ header h1 {
     opacity: 0.5;
     box-shadow: none;
 }
+/* ================= SCRIPT TEXTAREA ================= */
+.script-textarea {
+    width: 100%;
+    min-height: 250px;  /* Increased from default */
+    max-height: 400px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #333;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
 
+.script-textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+/* ================= IMAGE PREVIEW ================= */
+.image-preview {
+    width: 100%;
+    max-width: 400px;  /* Increased from default */
+    height: 250px;     /* Increased from default */
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.image-preview:hover {
+    border-color: #6366f1;
+    transform: scale(1.02);
+}
+
+/* ================= TONE OPTIONS ================= */
+.tone-options {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.checkbox-label:hover {
+    background: #f0f0f0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #6366f1;
+}
+
+.checkbox-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.checkbox-text strong {
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
 /* Progress */
 .instance-progress {
     margin-top: var(--spacing-md);
     padding: var(--spacing-md);
+
