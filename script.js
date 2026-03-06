@@ -1,6 +1,6 @@
 // ================= GLOBAL VARIABLES =================
 const kieApiKey = "416127f06c4433f3aac9ea71c9e81ffc";
-const backendUrl = "https://azbackend.onrender.com";
+const backendUrl = "https://veo-backend-m2qr.onrender.com";
 
 // Store active tasks per instance
 const activeTasks = {};
@@ -242,3 +242,4 @@ function toggleEdit(instanceNum) {
         editBtn.innerHTML = '<span class="btn-icon">✏️</span> Edit';
     }
 }
+
