@@ -3,77 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wooden Technologies - Bring Brands Online</title>
+    <title>AlmostZero - Veo 3.1 Video Generation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration decoration-1"></div>
+    <div class="bg-decoration decoration-2"></div>
+    <div class="bg-decoration decoration-3"></div>
+    
     <header>
-        <div class="container">
-            <h1>Wooden Technologies</h1>
-            <p>Your Household Startup for Digital Growth</p>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">🎬</div>
+                <h1>AlmostZero - Veo 3.1</h1>
+            </div>
+            <p class="tagline">Generate Professional Vertical Videos with Google Veo 3.1</p>
         </div>
     </header>
-    <nav>
-        <div class="container">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Empower Brands with Custom Websites & Ad Campaigns</h2>
-            <p>We craft digital solutions to bring your brand online, from stunning websites to targeted ads that drive results.</p>
-            <button id="cta-btn">Get a Free Consultation</button>
-        </div>
-    </section>
-    <section id="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Custom Website Creation</h3>
-                    <p>Responsive, modern websites tailored to your brand, built with the latest technologies.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Ad Campaign Management</h3>
-                    <p>Run effective ads on platforms like Google and Facebook to boost traffic and conversions.</p>
-                </div>
-                <div class="service-card">
-                    <h3>SEO & Digital Marketing</h3>
-                    <p>Optimize for search engines and grow your online presence with strategic marketing.</p>
+    
+    <main class="container">
+        <!-- Veo 3.1 Video Generation Section -->
+        <section class="card" id="veo-section">
+            <div class="section-header">
+                <div class="section-icon">🎥</div>
+                <div>
+                    <h2>Google Veo 3.1 Video Generation</h2>
+                    <p class="section-description">Create 4 separate videos with custom scripts and start/end frames</p>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="about">
-        <div class="container">
-            <h2>About Wooden Technologies</h2>
-            <p>Born from a household passion for innovation, Wooden Technologies specializes in helping brands thrive in the digital age. We combine creativity with tech expertise to deliver affordable, impactful solutions.</p>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Email: info@woodentechnologies.com</p>
-            <p>Phone: (123) 456-7890</p>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
+            
+            <!-- 4 Video Instances Side by Side -->
+            <div class="veo-instances-grid">
+                <!-- Instance 1 -->
+                <div class="veo-instance">
+                    <div class="instance-header">
+                        <h3>Video 1</h3>
+                        <span class="instance-badge">1/4</span>
+                    </div>
+                    
+                    <div class="instance-inputs">
+                        <div class="input-group">
+                            <label class="input-label">📝 Script/Prompt</label>
+                            <textarea class="veo-script" id="script1" placeholder="Describe your video content here..."></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Starting Frame</label>
+                            <input type="text" class="veo-image-input" id="image1_start" placeholder="https://example.com/start.jpg" oninput="handleVeoImageInput(this, 'preview1_start', 'loader1_start', 'progress1_start')">
+                            <div class="loader" id="loader1_start">
+                                <span id="progress1_start">0%</span>
+                            </div>
+                            <img id="preview1_start" class="veo-preview-image" alt="Start Frame">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Ending Frame</label>
+                            <input type="text" class="veo-image-input" id="image1_end" placeholder="https://example.com/end.jpg" oninput="handleVeoImageInput(this, 'preview1_end', 'loader1_end', 'progress1_end')">
+                            <div class="loader" id="loader1_end">
+                                <span id="progress1_end">0%</span>
+                            </div>
+                            <img id="preview1_end" class="veo-preview-image" alt="End Frame">
+                        </div>
+                    </div>
+                    
+                    <button id="generateBtn1" class="btn btn-gradient btn-small" onclick="generateVeoVideo(1)" disabled>
+                        <span class="btn-icon">🚀</span>
+                        <span>Generate Video 1</span>
+                    </button>
+                    
+                    <div id="progress1" class="instance-progress" style="display: none;">
+                        <div class="progress-header">
+                            <p id="progressText1" class="progress-text">Generating...</p>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div id="progressBar1" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="result1" class="video-result" style="display: none;">
+                        <video src="" controls></video>
+                        <a href="" class="download-btn">⬇️ Download</a>
+                    </div>
+                </div>
+                
+                <!-- Instance 2 -->
+                <div class="veo-instance">
+                    <div class="instance-header">
+                        <h3>Video 2</h3>
+                        <span class="instance-badge">2/4</span>
+                    </div>
+                    
+                    <div class="instance-inputs">
+                        <div class="input-group">
+                            <label class="input-label">📝 Script/Prompt</label>
+                            <textarea class="veo-script" id="script2" placeholder="Describe your video content here..."></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Starting Frame</label>
+                            <input type="text" class="veo-image-input" id="image2_start" placeholder="https://example.com/start.jpg" oninput="handleVeoImageInput(this, 'preview2_start', 'loader2_start', 'progress2_start')">
+                            <div class="loader" id="loader2_start">
+                                <span id="progress2_start">0%</span>
+                            </div>
+                            <img id="preview2_start" class="veo-preview-image" alt="Start Frame">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Ending Frame</label>
+                            <input type="text" class="veo-image-input" id="image2_end" placeholder="https://example.com/end.jpg" oninput="handleVeoImageInput(this, 'preview2_end', 'loader2_end', 'progress2_end')">
+                            <div class="loader" id="loader2_end">
+                                <span id="progress2_end">0%</span>
+                            </div>
+                            <img id="preview2_end" class="veo-preview-image" alt="End Frame">
+                        </div>
+                    </div>
+                    
+                    <button id="generateBtn2" class="btn btn-gradient btn-small" onclick="generateVeoVideo(2)" disabled>
+                        <span class="btn-icon">🚀</span>
+                        <span>Generate Video 2</span>
+                    </button>
+                    
+                    <div id="progress2" class="instance-progress" style="display: none;">
+                        <div class="progress-header">
+                            <p id="progressText2" class="progress-text">Generating...</p>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div id="progressBar2" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="result2" class="video-result" style="display: none;">
+                        <video src="" controls></video>
+                        <a href="" class="download-btn">⬇️ Download</a>
+                    </div>
+                </div>
+                
+                <!-- Instance 3 -->
+                <div class="veo-instance">
+                    <div class="instance-header">
+                        <h3>Video 3</h3>
+                        <span class="instance-badge">3/4</span>
+                    </div>
+                    
+                    <div class="instance-inputs">
+                        <div class="input-group">
+                            <label class="input-label">📝 Script/Prompt</label>
+                            <textarea class="veo-script" id="script3" placeholder="Describe your video content here..."></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Starting Frame</label>
+                            <input type="text" class="veo-image-input" id="image3_start" placeholder="https://example.com/start.jpg" oninput="handleVeoImageInput(this, 'preview3_start', 'loader3_start', 'progress3_start')">
+                            <div class="loader" id="loader3_start">
+                                <span id="progress3_start">0%</span>
+                            </div>
+                            <img id="preview3_start" class="veo-preview-image" alt="Start Frame">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Ending Frame</label>
+                            <input type="text" class="veo-image-input" id="image3_end" placeholder="https://example.com/end.jpg" oninput="handleVeoImageInput(this, 'preview3_end', 'loader3_end', 'progress3_end')">
+                            <div class="loader" id="loader3_end">
+                                <span id="progress3_end">0%</span>
+                            </div>
+                            <img id="preview3_end" class="veo-preview-image" alt="End Frame">
+                        </div>
+                    </div>
+                    
+                    <button id="generateBtn3" class="btn btn-gradient btn-small" onclick="generateVeoVideo(3)" disabled>
+                        <span class="btn-icon">🚀</span>
+                        <span>Generate Video 3</span>
+                    </button>
+                    
+                    <div id="progress3" class="instance-progress" style="display: none;">
+                        <div class="progress-header">
+                            <p id="progressText3" class="progress-text">Generating...</p>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div id="progressBar3" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="result3" class="video-result" style="display: none;">
+                        <video src="" controls></video>
+                        <a href="" class="download-btn">⬇️ Download</a>
+                    </div>
+                </div>
+                
+                <!-- Instance 4 -->
+                <div class="veo-instance">
+                    <div class="instance-header">
+                        <h3>Video 4</h3>
+                        <span class="instance-badge">4/4</span>
+                    </div>
+                    
+                    <div class="instance-inputs">
+                        <div class="input-group">
+                            <label class="input-label">📝 Script/Prompt</label>
+                            <textarea class="veo-script" id="script4" placeholder="Describe your video content here..."></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Starting Frame</label>
+                            <input type="text" class="veo-image-input" id="image4_start" placeholder="https://example.com/start.jpg" oninput="handleVeoImageInput(this, 'preview4_start', 'loader4_start', 'progress4_start')">
+                            <div class="loader" id="loader4_start">
+                                <span id="progress4_start">0%</span>
+                            </div>
+                            <img id="preview4_start" class="veo-preview-image" alt="Start Frame">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="input-label">🖼️ Ending Frame</label>
+                            <input type="text" class="veo-image-input" id="image4_end" placeholder="https://example.com/end.jpg" oninput="handleVeoImageInput(this, 'preview4_end', 'loader4_end', 'progress4_end')">
+                            <div class="loader" id="loader4_end">
+                                <span id="progress4_end">0%</span>
+                            </div>
+                            <img id="preview4_end" class="veo-preview-image" alt="End Frame">
+                        </div>
+                    </div>
+                    
+                    <button id="generateBtn4" class="btn btn-gradient btn-small" onclick="generateVeoVideo(4)" disabled>
+                        <span class="btn-icon">🚀</span>
+                        <span>Generate Video 4</span>
+                    </button>
+                    
+                    <div id="progress4" class="instance-progress" style="display: none;">
+                        <div class="progress-header">
+                            <p id="progressText4" class="progress-text">Generating...</p>
+                        </div>
+                        <div class="progress-bar-wrapper">
+                            <div id="progressBar4" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="result4" class="video-result" style="display: none;">
+                        <video src="" controls></video>
+                        <a href="" class="download-btn">⬇️ Download</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Options -->
+            <div class="veo-options">
+                <div class="config-grid">
+                    <div class="config-card">
+                        <label class="config-label">
+                            <span class="label-icon">🎛️</span>
+                            Model
+                        </label>
+                        <select id="veoModel" class="modern-select">
+                            <option value="veo3_fast" selected>Veo 3.1 Fast</option>
+                            <option value="veo3">Veo 3.1 Quality</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-card">
+                        <label class="config-label">
+                            <span class="label-icon">📐</span>
+                            Aspect Ratio
+                        </label>
+                        <select id="veoAspectRatio" class="modern-select">
+                            <option value="9:16" selected>9:16 Portrait (Vertical)</option>
+                            <option value="16:9">16:9 Landscape</option>
+                        </select>
+                    </div>
+                    
+                    <div class="config-card">
+                        <label class="config-label">
+                            <span class="label-icon">🔤</span>
+                            Enable Translation
+                        </label>
+                        <select id="veoTranslation" class="modern-select">
+                            <option value="true" selected>Yes (Translate to English)</option>
+                            <option value="false">No (Use Original)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
     <footer>
-        <div class="container">
-            <p>&copy; 2023 Wooden Technologies. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">🎬</div>
+                <span>AlmostZero - Veo 3.1</span>
+            </div>
+            <p class="footer-copyright">&copy; 2026 AlmostZero. All rights reserved.</p>
         </div>
     </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>
