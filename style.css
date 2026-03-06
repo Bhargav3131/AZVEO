@@ -343,23 +343,24 @@ header h1 {
 
 .veo-script {
     width: 100%;
-    min-height: 100px;
-    padding: var(--spacing-md);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-    font-size: 0.9em;
-    resize: vertical;
-    transition: var(--transition-base);
+    min-height: 200px;  /* Increase from default (e.g., 100px) */
+    max-height: 400px;  /* Optional: set max height */
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    resize: vertical;  /* Allow user to resize */
+    transition: all 0.3s ease;
 }
 
 .veo-script:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
 }
-
 .veo-image-input {
     width: 100%;
     padding: var(--spacing-md);
@@ -554,4 +555,5 @@ header h1 {
 .instance-progress {
     margin-top: var(--spacing-md);
     padding: var(--spacing-md);
+
 
