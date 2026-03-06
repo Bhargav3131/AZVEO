@@ -60,7 +60,9 @@ function checkInstanceValidation(inputId) {
     const generateBtn = document.getElementById(`generateBtn${instanceNum}`);
     
     if (generateBtn) {
-        if (script && startImage && endImage) {
+        // ✅ Script and Start Image are required
+        // ✅ End Image is optional
+        if (script && startImage) {
             generateBtn.disabled = false;
         } else {
             generateBtn.disabled = true;
@@ -353,3 +355,4 @@ function changeModel() {
     const currentModel = modelSelect.value;
     console.log("Model changed to:", currentModel);
 }
+
