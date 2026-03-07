@@ -90,13 +90,13 @@ function updateScriptFromCheckbox(instanceNum) {
     
     if (toneOption1.checked) {
         selectedOptions.push(
-            "TONE: Indian Hinglish with Character Age 27, with suitable expression according to the script as it will be used as a hook, No on-screen text and make the character say the script as it is."
+            "TONE: Indian Hinglish with Character Age 27, with suitable expression according to the script as it will be used as a hook, No on-screen text and make the character say the script as it is and no background music."
         );
     }
     
     if (toneOption2.checked) {
         selectedOptions.push(
-            "Tone Indian Hinglish - Indian tone age 27. this is a hook for an ad so make it that way. no onscreen text. make the person say the script exactly."
+            "Tone Indian Hinglish - Indian tone age 27. this is a hook for an ad so make it that way. no onscreen text. make the person say the script exactly and no background music."
         );
     }
     
@@ -362,3 +362,4 @@ function changeModel() {
     const currentModel = modelSelect.value;
     console.log("Model changed to:", currentModel);
 }
+
